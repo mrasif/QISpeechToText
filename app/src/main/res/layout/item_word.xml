@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:bind="http://schemas.android.com/apk/res/android">
 
-    <data></data>
+    <data>
+        <variable
+            name="item"
+            type="in.mrasif.app.qispeechtotext.models.Item" />
+    </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBlack"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
+        android:background="@color/colorBlack">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
-            android:layout_marginTop="@dimen/ui_border_size"
-            android:layout_marginStart="@dimen/ui_border_size"
-            android:layout_marginBottom="@dimen/ui_border_size"
-            android:padding="@dimen/ui_default_mergin_size"
-            android:gravity="center"
-            android:layout_weight="1" />
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@{item.highlight?@color/colorHighlight:@color/colorWhite}"
+                android:layout_marginTop="@dimen/ui_border_size"
+                android:layout_marginStart="@dimen/ui_border_size"
+                android:layout_marginBottom="@dimen/ui_border_size"
+                android:padding="@dimen/ui_default_mergin_size"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="@{item.word}"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
-            android:layout_marginTop="@dimen/ui_border_size"
-            android:layout_marginEnd="@dimen/ui_border_size"
-            android:layout_marginStart="@dimen/ui_border_size"
-            android:layout_marginBottom="@dimen/ui_border_size"
-            android:padding="@dimen/ui_default_mergin_size"
-            android:gravity="center"
-            android:layout_weight="1" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@{item.highlight?@color/colorHighlight:@color/colorWhite}"
+                android:layout_marginTop="@dimen/ui_border_size"
+                android:layout_marginEnd="@dimen/ui_border_size"
+                android:layout_marginStart="@dimen/ui_border_size"
+                android:layout_marginBottom="@dimen/ui_border_size"
+                android:padding="@dimen/ui_default_mergin_size"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="@{Integer.toString(item.frequency)}"/>
+        </LinearLayout>
+    </RelativeLayout>
 </layout>
