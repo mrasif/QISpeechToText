@@ -1,7 +1,6 @@
 package in.mrasif.app.qispeechtotext.viewmodels;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -24,6 +23,7 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<List<Item>> items;
     private MutableLiveData<Boolean> isLoading;
     private MutableLiveData<Item> item;
+    private boolean isMatched;
 
     public LiveData<Item> getItem(){
         if (item==null){
@@ -55,13 +55,15 @@ public class MainViewModel extends ViewModel {
         return isLoading;
     }
 
-    public void updateUI(String text){
+    public boolean updateUI(String text){
+        isMatched=false;
         List<Item> dictionary=items.getValue();
         Item item=new Item(text);
         List<Item> newDictionary= Stream.of(dictionary).map(item1 -> {
             if (item.equals(item1)){
                 item1.setHighlight(true);
                 item1.setFrequency(item1.getFrequency()+1);
+                isMatched=true;
                 return item1;
             }
             else {
@@ -82,6 +84,7 @@ public class MainViewModel extends ViewModel {
             }
         }
         items.postValue(newDictionary);
+        return isMatched;
     }
 
     private void loadData() {

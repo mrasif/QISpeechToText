@@ -179,7 +179,10 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         String text=matches.get(0);
         Log.i(TAG, "onResults: "+text);
         model.changeVoiceOutput(text);
-        model.updateUI(text);
+        boolean isMatched=model.updateUI(text);
+        if (!isMatched){
+            Toast.makeText(this, "Phrase is not available in dictionary.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
