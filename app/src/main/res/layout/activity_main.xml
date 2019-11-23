@@ -1,61 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:bind="http://schemas.android.com/apk/res/android">
+
     <data>
 
+        <import type="android.view.View"/>
+
+        <variable
+            name="adapter"
+            type="in.mrasif.app.qispeechtotext.adapters.ItemAdapter" />
+        <variable
+            name="item"
+            type="in.mrasif.app.qispeechtotext.models.Item" />
+
     </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_margin="@dimen/ui_mergin_size"
+        android:orientation="vertical"
         tools:context=".MainActivity">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:text="@string/tap_to_speak"
-            android:textSize="@dimen/title_size"
-            android:gravity="center_horizontal"/>
+            android:textSize="@dimen/title_size" />
+
         <ToggleButton
+            android:id="@+id/tbSpeak"
             android:layout_width="@dimen/mic_size"
             android:layout_height="@dimen/mic_size"
             android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/ui_default_mergin_size"
             android:background="@drawable/tb_mic_background"
-            android:textOn=""
-            android:textOff=""
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:layout_margin="@dimen/ui_default_mergin_size"/>
+            android:textOff=""
+            android:textOn="" />
+
         <ProgressBar
+            android:id="@+id/pbRecognization"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ui_default_mergin_size"
             android:layout_marginStart="@dimen/ui_progress_margin_size"
+            android:layout_marginTop="@dimen/ui_default_mergin_size"
             android:layout_marginEnd="@dimen/ui_progress_margin_size"
             android:paddingLeft="10dp"
             android:paddingRight="10dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="@{item.word!=null?View.VISIBLE:View.GONE}"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/user_speaks"
-                android:gravity="center_horizontal"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="No Data Found"/>
+                android:text="@string/user_speaks" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/title_size"
+                android:textColor="@color/colorAccent"
+                android:text="@{`' `+item.word+` '`}"/>
         </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/ui_default_mergin_size"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            android:adapter="@{adapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 </layout>

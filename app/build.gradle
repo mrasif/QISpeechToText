@@ -37,7 +37,13 @@ dependencies {
     // Dependencies for design
     implementation 'com.android.support:design:29.0.0'
     implementation 'com.android.support:recyclerview-v7:29.0.0'
-    implementation 'com.android.support:cardview-v7:29.0.0'
+
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+    // For Stream support
+    implementation 'com.annimon:stream:1.2.1'
 
     // Dependencies for MVVM
     implementation 'android.arch.lifecycle:extensions:1.1.1'
