@@ -66,23 +66,28 @@ public class MainViewModel extends ViewModel {
                 isMatched=true;
                 return item1;
             }
+            else if (item.contains(item1)){
+                item1.setFrequency(item1.getFrequency()+1);
+                item1.setHighlight(false);
+                return item1;
+            }
             else {
                 item1.setHighlight(false);
                 return item1;
             }
         }).toList();
 
-        String[] textPart=text.split("\\s");
-        if (textPart.length>1){
-            for (String part:textPart){
-                Item partItem=new Item(part);
-                for (Item item1:newDictionary){
-                    if (item1.equals(partItem)){
-                        item1.setFrequency(item1.getFrequency()+1);
-                    }
-                }
-            }
-        }
+//        String[] textPart=text.split("\\s");
+//        if (textPart.length>1){
+//            for (String part:textPart){
+//                Item partItem=new Item(part);
+//                for (Item item1:newDictionary){
+//                    if (item1.equals(partItem)){
+//                        item1.setFrequency(item1.getFrequency()+1);
+//                    }
+//                }
+//            }
+//        }
         items.postValue(newDictionary);
         return isMatched;
     }

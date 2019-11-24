@@ -65,4 +65,10 @@ public class Item implements Comparable {
         Item item=(Item)o;
         return frequency==item.frequency?0:(frequency<item.frequency?1:-1);
     }
+
+    public boolean contains(Item item){
+        return this.word.toLowerCase().contains(item.word.toLowerCase());
+    }
+
+
 }

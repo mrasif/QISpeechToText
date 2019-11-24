@@ -172,16 +172,12 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     public void onResults(Bundle results) {
         Log.i(TAG, "onResults");
         ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-//        String text = "";
-//        for (String result : matches) {
-//            text += result + "\n";
-//        }
         String text=matches.get(0);
         Log.i(TAG, "onResults: "+text);
         model.changeVoiceOutput(text);
         boolean isMatched=model.updateUI(text);
         if (!isMatched){
-            Toast.makeText(this, "Phrase is not available in dictionary.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Phrase is not available in dictionary.", Toast.LENGTH_LONG).show();
         }
     }
 
