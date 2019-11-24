@@ -39,6 +39,7 @@
             android:background="@drawable/tb_mic_background"
             android:focusable="false"
             android:focusableInTouchMode="false"
+            android:tooltipText="@string/tap_to_speak"
             android:textOff=""
             android:textOn="" />
 
